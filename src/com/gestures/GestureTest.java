@@ -20,6 +20,8 @@ import java.util.ArrayList;
 import com.gestures.generated.R;
 
 import android.app.Activity;
+import android.app.SearchManager;
+import android.content.Intent;
 import android.gesture.Gesture;
 import android.gesture.GestureLibraries;
 import android.gesture.GestureLibrary;
@@ -55,6 +57,10 @@ public class GestureTest extends Activity implements OnGesturePerformedListener 
     ArrayList<Prediction> predictions = gestureLib.recognize(gesture);
     for (Prediction prediction : predictions) {
       if (prediction.score > 1.0) {
+        Intent intent = new Intent(Intent.ACTION_WEB_SEARCH);
+        String keyword= "test search";
+        intent.putExtra(SearchManager.QUERY, keyword);
+        startActivity(intent);
         Toast.makeText(this, prediction.name, Toast.LENGTH_SHORT)
             .show();
       }
