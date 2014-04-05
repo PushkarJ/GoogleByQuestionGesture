@@ -79,8 +79,8 @@ public class GestureTest extends Activity implements OnGesturePerformedListener 
         String keyword=selectedText;
         intent.putExtra(SearchManager.QUERY, keyword);
         startActivity(intent);
-        Toast.makeText(this, prediction.name, Toast.LENGTH_SHORT)
-            .show();
+        //Toast.makeText(this, prediction.name, Toast.LENGTH_SHORT)
+          //  .show();
       }
     }
   }
