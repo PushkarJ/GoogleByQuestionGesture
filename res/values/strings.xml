@@ -16,5 +16,5 @@
 
 <resources>
     <string name="app_name">CustomViews</string>
-    <string name="hello">Hello</string>
+    <string name="hello">Hello ABCDEFGHIJKLMNOPQRSTUVWXYZ---------------</string>
 </resources>

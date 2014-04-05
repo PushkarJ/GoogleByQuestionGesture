@@ -17,8 +17,6 @@ package com.gestures;
 
 import java.util.ArrayList;
 
-import com.gestures.generated.R;
-
 import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Intent;
@@ -29,12 +27,19 @@ import android.gesture.GestureOverlayView;
 import android.gesture.GestureOverlayView.OnGesturePerformedListener;
 import android.gesture.Prediction;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnTouchListener;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.gestures.generated.R;
 
 public class GestureTest extends Activity implements OnGesturePerformedListener {
   private GestureLibrary gestureLib;
-
+  TextView textView ;
+  String selectedText;
   
 /** Called when the activity is first created. */
 
@@ -50,6 +55,19 @@ public class GestureTest extends Activity implements OnGesturePerformedListener 
       finish();
     }
     setContentView(gestureOverlayView);
+    textView = (TextView)findViewById(R.id.hellotext);
+    textView.setOnTouchListener(new OnTouchListener()
+	{		
+		@Override
+		public boolean onTouch(View v, MotionEvent event)
+		{
+		    Log.i("customgestures", "Start:"+textView.getSelectionStart()+ " End: "+textView.getSelectionEnd());
+		    selectedText = textView.getText().subSequence(textView.getSelectionStart(), textView.getSelectionEnd()).toString();
+				return false;
+
+		}
+	});
+    
   }
 
   @Override
@@ -58,7 +76,7 @@ public class GestureTest extends Activity implements OnGesturePerformedListener 
     for (Prediction prediction : predictions) {
       if (prediction.score > 1.0) {
         Intent intent = new Intent(Intent.ACTION_WEB_SEARCH);
-        String keyword= "test search";
+        String keyword=selectedText;
         intent.putExtra(SearchManager.QUERY, keyword);
         startActivity(intent);
         Toast.makeText(this, prediction.name, Toast.LENGTH_SHORT)
