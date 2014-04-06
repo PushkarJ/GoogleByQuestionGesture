@@ -16,5 +16,7 @@
 
 <resources>
     <string name="app_name">Search Gesture Tester</string>
-    <string name="hello">Hello ABCDEFGHIJKLMNOPQRSTUVWXYZ---------------</string>
+    <string name="hello">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam porttitor nisi posuere ipsum aliquet, vitae tristique est egestas. Proin in justo in dui viverra gravida. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Suspendisse potenti. Donec posuere mauris eget elit pharetra dapibus. Vivamus in malesuada dolor. Phasellus aliquet ligula quis commodo commodo. Vestibulum eget purus in elit semper fringilla a quis diam. Praesent vitae rhoncus turpis, eu iaculis nisl. Sed ligula magna, tristique eu metus euismod, molestie condimentum arcu. Aenean pharetra, turpis a varius vulputate, quam mi luctus nisi, vel accumsan nibh leo consequat risus.
+
+Praesent ut massa placerat, pretium magna ut, pharetra sem. In tempus vestibulum metus eu semper. Morbi faucibus augue sit amet dui rhoncus pellentesque. Integer tempus magna id orci lacinia, quis cursus nisl fringilla. Nullam non augue semper arcu convallis pretium. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam faucibus, libero vel mattis auctor, nulla sem elementum magna, sed malesuada libero libero sit amet lacus. Ut pretium varius pulvinar. Suspendisse ut congue nulla. Nulla rhoncus dolor nunc. Mauris pharetra congue dolor in interdum. Interdum et malesuada fames ac ante ipsum primis in faucibus.</string>
 </resources>
