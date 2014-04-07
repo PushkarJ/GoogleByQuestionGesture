@@ -26,13 +26,13 @@ import android.gesture.GestureLibrary;
 import android.gesture.GestureOverlayView;
 import android.gesture.GestureOverlayView.OnGesturePerformedListener;
 import android.gesture.Prediction;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.gestures.generated.R;
 
@@ -49,6 +49,7 @@ public class GestureTest extends Activity implements OnGesturePerformedListener 
     GestureOverlayView gestureOverlayView = new GestureOverlayView(this);
     View inflate = getLayoutInflater().inflate(R.layout.main, null);
     gestureOverlayView.addView(inflate);
+    gestureOverlayView.setGestureColor(Color.TRANSPARENT);
     gestureOverlayView.addOnGesturePerformedListener(this);
     gestureLib = GestureLibraries.fromRawResource(this, R.raw.gestures);
     if (!gestureLib.load()) {
