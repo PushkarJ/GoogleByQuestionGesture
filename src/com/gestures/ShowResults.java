@@ -1,7 +1,7 @@
 package com.gestures;
 
 import java.util.Collection;
-import java.util.Hashtable;
+import java.util.HashMap;
 import java.util.Set;
 
 import android.app.Activity;
@@ -18,11 +18,12 @@ public class ShowResults extends Activity
 	protected void onCreate(Bundle savedInstanceState) 
 	{
 		super.onCreate(savedInstanceState);
+		setContentView(R.layout.show_results);
 		Intent intent = getIntent();
 		String searchMethod = intent.getExtras().getString(
 				Constants.SEARCH_METHOD);
 		@SuppressWarnings("unchecked")
-		Hashtable<String, Double> results =(Hashtable<String,Double>) intent.getExtras().get(
+		HashMap<String, Double> results =(HashMap<String,Double>) intent.getExtras().get(
 				Constants.RESULTS);
 		StringBuilder resultsCSV = new StringBuilder();
 		resultsCSV.append(Constants.SEARCH_METHOD).append(",");
@@ -33,7 +34,7 @@ public class ShowResults extends Activity
 		{
 			resultsCSV.append(rh).append(",");
 		}
-		resultsCSV.append("Results");
+		resultsCSV.append("Total Time");
 		resultsCSV.append(System.getProperty("line.separator"));
 		resultsCSV.append(searchMethod+",");
 		Collection<Double> result_values=results.values();

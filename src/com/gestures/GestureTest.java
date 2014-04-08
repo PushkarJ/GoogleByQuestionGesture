@@ -17,7 +17,7 @@ package com.gestures;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Hashtable;
+import java.util.HashMap;
 
 import android.app.Activity;
 import android.app.SearchManager;
@@ -49,19 +49,26 @@ public class GestureTest extends Activity implements OnGesturePerformedListener 
   private GestureLibrary gestureLib;
   TextView textView;
   String selectedText;
-  Hashtable<String, Double> results;
+  HashMap<String, Double> results;
   String searchMethod;
   int iteration = 0;
   final int[] targetStart = {146, 560, 613, 90, 604, 542, 217, 359, 236, 195};
   final int[] targetEnd = {149, 568, 619, 97, 610, 544, 222, 368, 241, 204};
+  private Date newerDate;
+  private Date olderDate;
 /** Called when the activity is first created. */
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
+	  
     super.onCreate(savedInstanceState);
     Intent intent = getIntent();
     searchMethod= intent.getExtras().getString(Constants.SEARCH_METHOD);
     iteration = intent.getExtras().getInt("iteration");
+		results = intent.getExtras().get(Constants.RESULTS) == null ? new HashMap<String, Double>(
+				11) : (HashMap<String, Double>) intent.getExtras().get(
+				Constants.RESULTS);
+
     GestureOverlayView gestureOverlayView = new GestureOverlayView(this);
     View inflate = getLayoutInflater().inflate(R.layout.main, null);
     gestureOverlayView.addView(inflate);
@@ -82,6 +89,7 @@ public class GestureTest extends Activity implements OnGesturePerformedListener 
 		finish();
 		Intent next = getIntent();
 		next.putExtra("iteration", iteration+1);
+		next.putExtra(Constants.RESULTS, results);
 		startActivity(next);	
 		}
 	});
@@ -111,7 +119,9 @@ public class GestureTest extends Activity implements OnGesturePerformedListener 
 		@Override
 		public boolean onTouch(View v, MotionEvent event)
 		{
-		    Log.i("customgestures","Start Timer:"+new Date().toString());			
+			//TODO: rename date variable
+			olderDate= new Date();
+		    Log.i("customgestures","Start Timer:"+olderDate.toString());			
 		    Log.i("customgestures", "Start:"+textView.getSelectionStart()+ " End: "+textView.getSelectionEnd());
 		    selectedText = textView.getText().subSequence(textView.getSelectionStart(), textView.getSelectionEnd()).toString();
 				return false;
@@ -124,18 +134,24 @@ public class GestureTest extends Activity implements OnGesturePerformedListener 
   @Override
   public void onGesturePerformed(GestureOverlayView overlay, Gesture gesture) {
     ArrayList<Prediction> predictions = gestureLib.recognize(gesture);
-    for (Prediction prediction : predictions) {
-      if (prediction.score > 1.0) {
-		Log.i("customgestures","Stop Timer:"+new Date().toString());
-		//TODO:Measure the difference between start and stop timings.
+    int index=0;
+    Prediction prediction;
+      do  
+      {
+    	  prediction = predictions.get(index++);
+		//Log.i("customgestures","Stop Timer:"+new Date().toString());
     	Intent intent = new Intent(Intent.ACTION_WEB_SEARCH);
         String keyword=selectedText;
         intent.putExtra(SearchManager.QUERY, keyword);
         startActivity(intent);
+        //TODO:rename date variable
+        newerDate= new Date();
+        double timetoCompleteTask = ((double)(newerDate.getTime() - olderDate.getTime()));
+        Log.i("customgestures", "Time to complete the task: "+String.valueOf(timetoCompleteTask));
         //TODO:Add the timer entry in the hashtable
+        results.put(String.valueOf(iteration), Double.valueOf((timetoCompleteTask/1000)));
         //Toast.makeText(this, prediction.name, Toast.LENGTH_SHORT)
           //  .show();
-      }
-    }
-  }
-} 
+      }while(prediction.score < 1.0 || index == predictions.size());
+   }
+ } 
