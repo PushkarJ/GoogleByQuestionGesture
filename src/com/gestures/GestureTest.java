@@ -50,8 +50,8 @@ public class GestureTest extends Activity implements OnGesturePerformedListener 
   String selectedText;
   Hashtable<String, String> results;
   int iteration = 0;
-  final int[] targetStart = {146, 561, 614, 90, 605, 543, 217, 359, 236, 185};
-  final int[] targetEnd = {149, 569, 620, 97, 611, 545, 222, 368, 241, 194};
+  final int[] targetStart = {146, 560, 613, 90, 604, 542, 217, 359, 236, 195};
+  final int[] targetEnd = {149, 568, 619, 97, 610, 544, 222, 368, 241, 204};
 /** Called when the activity is first created. */
 
   @Override
@@ -59,6 +59,7 @@ public class GestureTest extends Activity implements OnGesturePerformedListener 
     super.onCreate(savedInstanceState);
     Intent intent = getIntent();
     String searchMethod = intent.getExtras().getString(Constants.SEARCH_METHOD);
+    iteration = intent.getExtras().getInt("iteration");
     GestureOverlayView gestureOverlayView = new GestureOverlayView(this);
     View inflate = getLayoutInflater().inflate(R.layout.main, null);
     gestureOverlayView.addView(inflate);
@@ -77,9 +78,14 @@ public class GestureTest extends Activity implements OnGesturePerformedListener 
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
 		finish();
-		startActivity(getIntent());		
+		Intent next = getIntent();
+		next.putExtra("iteration", iteration+1);
+		startActivity(next);	
 		}
 	});
+    if (iteration == 9) {
+    	reload.setEnabled(false);
+    }
     /* Bold the target text */
     final SpannableStringBuilder sb = new SpannableStringBuilder(textView.getText().toString());
     final StyleSpan bdit = new StyleSpan(android.graphics.Typeface.BOLD_ITALIC);
