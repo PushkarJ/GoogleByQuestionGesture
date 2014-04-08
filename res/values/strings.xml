@@ -20,4 +20,12 @@
 
 Praesent ut massa placerat, pretium magna ut, pharetra sem. In tempus vestibulum metus eu semper. Morbi faucibus augue sit amet dui rhoncus pellentesque. Integer tempus magna id orci lacinia, quis cursus nisl fringilla. Nullam non augue semper arcu convallis pretium. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam faucibus, libero vel mattis auctor, nulla sem elementum magna, sed malesuada libero libero sit amet lacus. Ut pretium varius pulvinar. Suspendisse ut congue nulla. Nulla rhoncus dolor nunc. Mauris pharetra congue dolor in interdum. Interdum et malesuada fames ac ante ipsum primis in faucibus.</string>
     <string name="search_button_desc">Search</string>
+    <string name="normal_search">Normal search</string>
+    <string name="question_mark">Question mark gesture</string>
+    <string name="swirl_clockwise">Swirl clockwise</string>
+    <string name="swirl_anticlockwise">Swirl anticlockwise</string>
+    <string name="next">Next</string>
+    <string name="welcome">Welcome, please select one of the four search methods and click next</string>
+    <string name="reload">Reload</string>
+    <string name="show_results">Show Results</string>
 </resources>

@@ -17,6 +17,7 @@ package com.gestures;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Hashtable;
 
 import android.app.Activity;
 import android.app.SearchManager;
@@ -41,17 +42,20 @@ import android.view.View.OnTouchListener;
 import android.widget.TextView;
 
 import com.gestures.generated.R;
+import com.gestures.utils.Constants;
 
 public class GestureTest extends Activity implements OnGesturePerformedListener {
   private GestureLibrary gestureLib;
   TextView textView ;
   String selectedText;
- 
+  Hashtable<String, String> results;
 /** Called when the activity is first created. */
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    Intent intent = getIntent();
+    String searchMethod = intent.getExtras().getString(Constants.SEARCH_METHOD);
     GestureOverlayView gestureOverlayView = new GestureOverlayView(this);
     View inflate = getLayoutInflater().inflate(R.layout.main, null);
     gestureOverlayView.addView(inflate);
