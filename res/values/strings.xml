@@ -28,4 +28,5 @@ Praesent ut massa placerat, pretium magna ut, pharetra sem. In tempus vestibulum
     <string name="welcome">Welcome, please select one of the four search methods and click next</string>
     <string name="reload">Reload</string>
     <string name="show_results">Show Results</string>
+    <string name="no_results">No Results</string>
 </resources>

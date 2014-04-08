@@ -45,17 +45,19 @@ import com.gestures.generated.R;
 import com.gestures.utils.Constants;
 
 public class GestureTest extends Activity implements OnGesturePerformedListener {
+
   private GestureLibrary gestureLib;
   TextView textView ;
   String selectedText;
-  Hashtable<String, String> results;
+  Hashtable<String, Double> results;
+  String searchMethod;
 /** Called when the activity is first created. */
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     Intent intent = getIntent();
-    String searchMethod = intent.getExtras().getString(Constants.SEARCH_METHOD);
+    searchMethod= intent.getExtras().getString(Constants.SEARCH_METHOD);
     GestureOverlayView gestureOverlayView = new GestureOverlayView(this);
     View inflate = getLayoutInflater().inflate(R.layout.main, null);
     gestureOverlayView.addView(inflate);
@@ -75,6 +77,18 @@ public class GestureTest extends Activity implements OnGesturePerformedListener 
 			// TODO Auto-generated method stub
 		finish();
 		startActivity(getIntent());		
+		}
+	});
+    /* Send the hashtable to ShowResults Activity */
+    Button showResults=(Button)findViewById(R.id.show_results);
+    showResults.setOnClickListener(new OnClickListener() {
+		
+		@Override
+		public void onClick(View v) {
+			Intent intent = new Intent(GestureTest.this, ShowResults.class);
+			intent.putExtra(Constants.SEARCH_METHOD, searchMethod);
+			intent.putExtra(Constants.RESULTS, results);
+			startActivity(intent); 			
 		}
 	});
     /* Bold the target text */
@@ -111,7 +125,7 @@ public class GestureTest extends Activity implements OnGesturePerformedListener 
         String keyword=selectedText;
         intent.putExtra(SearchManager.QUERY, keyword);
         startActivity(intent);
-        
+        //TODO:Add the timer entry in the hashtable
         //Toast.makeText(this, prediction.name, Toast.LENGTH_SHORT)
           //  .show();
       }
