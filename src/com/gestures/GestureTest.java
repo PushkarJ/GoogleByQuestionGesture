@@ -46,9 +46,12 @@ import com.gestures.utils.Constants;
 
 public class GestureTest extends Activity implements OnGesturePerformedListener {
   private GestureLibrary gestureLib;
-  TextView textView ;
+  TextView textView;
   String selectedText;
   Hashtable<String, String> results;
+  int iteration = 0;
+  final int[] targetStart = {146, 561, 614, 90, 605, 543, 217, 359, 236, 185};
+  final int[] targetEnd = {149, 569, 620, 97, 611, 545, 222, 368, 241, 194};
 /** Called when the activity is first created. */
 
   @Override
@@ -69,11 +72,9 @@ public class GestureTest extends Activity implements OnGesturePerformedListener 
     textView = (TextView)findViewById(R.id.hellotext);
     
     /* Bold the target text */
-    final int[] targetStart = {79};
-    final int[] targetEnd = {97};
     final SpannableStringBuilder sb = new SpannableStringBuilder(textView.getText().toString());
     final StyleSpan bdit = new StyleSpan(android.graphics.Typeface.BOLD_ITALIC);
-    sb.setSpan(bdit, targetStart[0], targetEnd[0], Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
+    sb.setSpan(bdit, targetStart[iteration], targetEnd[iteration], Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
     textView.setText(sb);
     
     textView.setOnTouchListener(new OnTouchListener()
