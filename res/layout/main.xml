@@ -32,15 +32,15 @@
     android:textIsSelectable="true"/>
 
 <Button
-    android:id="@+id/reload"
+    android:id="@+id/advance"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_below="@id/hellotext"
-    android:text="@string/reload" />
+    android:text="@string/advance" />
 
 <Button
     android:id="@+id/show_results"
-    android:layout_toRightOf="@id/reload"
+    android:layout_toRightOf="@id/advance"
     android:layout_below="@id/hellotext"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"

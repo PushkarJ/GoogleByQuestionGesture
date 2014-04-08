@@ -47,10 +47,13 @@ import com.gestures.utils.Constants;
 public class GestureTest extends Activity implements OnGesturePerformedListener {
 
   private GestureLibrary gestureLib;
-  TextView textView ;
+  TextView textView;
   String selectedText;
   Hashtable<String, Double> results;
   String searchMethod;
+  int iteration = 0;
+  final int[] targetStart = {146, 560, 613, 90, 604, 542, 217, 359, 236, 195};
+  final int[] targetEnd = {149, 568, 619, 97, 610, 544, 222, 368, 241, 204};
 /** Called when the activity is first created. */
 
   @Override
@@ -58,6 +61,7 @@ public class GestureTest extends Activity implements OnGesturePerformedListener 
     super.onCreate(savedInstanceState);
     Intent intent = getIntent();
     searchMethod= intent.getExtras().getString(Constants.SEARCH_METHOD);
+    iteration = intent.getExtras().getInt("iteration");
     GestureOverlayView gestureOverlayView = new GestureOverlayView(this);
     View inflate = getLayoutInflater().inflate(R.layout.main, null);
     gestureOverlayView.addView(inflate);
@@ -69,14 +73,16 @@ public class GestureTest extends Activity implements OnGesturePerformedListener 
     }
     setContentView(gestureOverlayView);
     textView = (TextView)findViewById(R.id.hellotext);
-    Button reload= (Button)findViewById(R.id.reload);
-    reload.setOnClickListener(new OnClickListener() {
+    Button advance = (Button)findViewById(R.id.advance);
+    advance.setOnClickListener(new OnClickListener() {
 		
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
 		finish();
-		startActivity(getIntent());		
+		Intent next = getIntent();
+		next.putExtra("iteration", iteration+1);
+		startActivity(next);	
 		}
 	});
     /* Send the hashtable to ShowResults Activity */
@@ -91,12 +97,13 @@ public class GestureTest extends Activity implements OnGesturePerformedListener 
 			startActivity(intent); 			
 		}
 	});
+    if (iteration == 9) {
+    	advance.setEnabled(false);
+    }
     /* Bold the target text */
-    final int[] targetStart = {79};
-    final int[] targetEnd = {97};
     final SpannableStringBuilder sb = new SpannableStringBuilder(textView.getText().toString());
     final StyleSpan bdit = new StyleSpan(android.graphics.Typeface.BOLD_ITALIC);
-    sb.setSpan(bdit, targetStart[0], targetEnd[0], Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
+    sb.setSpan(bdit, targetStart[iteration], targetEnd[iteration], Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
     textView.setText(sb);
     
     textView.setOnTouchListener(new OnTouchListener()
