@@ -30,15 +30,15 @@ import android.gesture.GestureOverlayView.OnGesturePerformedListener;
 import android.gesture.Prediction;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.util.TimeUtils;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
-import android.text.format.Time;
 import android.text.style.StyleSpan;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.gestures.generated.R;
@@ -67,7 +67,16 @@ public class GestureTest extends Activity implements OnGesturePerformedListener 
     }
     setContentView(gestureOverlayView);
     textView = (TextView)findViewById(R.id.hellotext);
-    
+    Button reload= (Button)findViewById(R.id.reload);
+    reload.setOnClickListener(new OnClickListener() {
+		
+		@Override
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+		finish();
+		startActivity(getIntent());		
+		}
+	});
     /* Bold the target text */
     final int[] targetStart = {79};
     final int[] targetEnd = {97};

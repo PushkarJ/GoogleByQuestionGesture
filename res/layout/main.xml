@@ -32,7 +32,7 @@
     android:textIsSelectable="true"/>
 
 <Button
-    android:id="@+id/Reload"
+    android:id="@+id/reload"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_below="@id/hellotext"
@@ -40,7 +40,7 @@
 
 <Button
     android:id="@+id/show_results"
-    android:layout_toRightOf="@id/Reload"
+    android:layout_toRightOf="@id/reload"
     android:layout_below="@id/hellotext"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
