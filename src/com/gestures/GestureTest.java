@@ -71,8 +71,8 @@ public class GestureTest extends Activity implements OnGesturePerformedListener 
     }
     setContentView(gestureOverlayView);
     textView = (TextView)findViewById(R.id.hellotext);
-    Button reload= (Button)findViewById(R.id.reload);
-    reload.setOnClickListener(new OnClickListener() {
+    Button advance = (Button)findViewById(R.id.advance);
+    advance.setOnClickListener(new OnClickListener() {
 		
 		@Override
 		public void onClick(View v) {
@@ -84,7 +84,7 @@ public class GestureTest extends Activity implements OnGesturePerformedListener 
 		}
 	});
     if (iteration == 9) {
-    	reload.setEnabled(false);
+    	advance.setEnabled(false);
     }
     /* Bold the target text */
     final SpannableStringBuilder sb = new SpannableStringBuilder(textView.getText().toString());
