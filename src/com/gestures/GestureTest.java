@@ -30,7 +30,10 @@ import android.gesture.Prediction;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.util.TimeUtils;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
 import android.text.format.Time;
+import android.text.style.StyleSpan;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -60,6 +63,15 @@ public class GestureTest extends Activity implements OnGesturePerformedListener 
     }
     setContentView(gestureOverlayView);
     textView = (TextView)findViewById(R.id.hellotext);
+    
+    /* Bold the target text */
+    final int targetStart = 79;
+    final int targetEnd = 97;
+    final SpannableStringBuilder sb = new SpannableStringBuilder(textView.getText().toString());
+    final StyleSpan bdit = new StyleSpan(android.graphics.Typeface.BOLD_ITALIC);
+    sb.setSpan(bdit, targetStart, targetEnd, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
+    textView.setText(sb);
+    
     textView.setOnTouchListener(new OnTouchListener()
 	{		
 		@Override
