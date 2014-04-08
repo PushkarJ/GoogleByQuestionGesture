@@ -1,52 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-
         <EditText
             android:id="@+id/editText1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:ems="10"
             android:inputType="text" >
-
             <requestFocus />
         </EditText>
 
         <ImageButton
             android:id="@+id/imageButton1"
-            android:layout_width="20dp"
+            android:layout_width="40dip"
             android:layout_height="wrap_content"
-            android:layout_weight="0.62"
+            android:layout_toRightOf="@id/editText1"
             android:contentDescription="@string/search_button_desc"
             android:src="@android:drawable/ic_menu_search" />
 
-    </LinearLayout>
 
 <TextView  
     android:id="@+id/hellotext"
-    android:layout_width="match_parent" 
-    android:layout_height="match_parent" 
+    android:layout_width="wrap_content" 
+    android:layout_height="wrap_content" 
     android:text="@string/hello"
+    android:layout_below="@id/editText1"
     android:textIsSelectable="true"/>
 
 <Button
-    android:id="@+id/Reload"
+    android:id="@+id/reload"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:layout_below="@id/hellotext"
     android:text="@string/reload" />
 
 <Button
     android:id="@+id/show_results"
+    android:layout_toRightOf="@id/reload"
+    android:layout_below="@id/hellotext"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="@string/show_results" />
 
-</LinearLayout> 
+</RelativeLayout> 
