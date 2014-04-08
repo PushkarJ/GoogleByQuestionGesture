@@ -36,4 +36,17 @@
     android:layout_height="match_parent" 
     android:text="@string/hello"
     android:textIsSelectable="true"/>
+
+<Button
+    android:id="@+id/Reload"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/reload" />
+
+<Button
+    android:id="@+id/show_results"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/show_results" />
+
 </LinearLayout> 

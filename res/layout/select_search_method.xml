@@ -3,31 +3,43 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-<RadioGroup 
-    android:id="@+id/search_group"
+    <TextView
+        android:id="@+id/Welcome"
+        android:text="@string/welcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"/>
+
+    <RadioGroup
+        android:id="@+id/search_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" >
-    <RadioButton
-        android:id="@+id/normal_search"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/normal_search" />
-    <RadioButton
-        android:id="@+id/question_mark"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/question_mark" />
+
         <RadioButton
-        android:id="@+id/swirl_clockwise"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/swirl_clockwise" />
-       <RadioButton
-        android:id="@+id/swirl_anticlockwise"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/swirl_anticlockwise" />
-</RadioGroup>
+            android:id="@+id/normal_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/normal_search" />
+
+        <RadioButton
+            android:id="@+id/question_mark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/question_mark" />
+
+        <RadioButton
+            android:id="@+id/swirl_clockwise"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/swirl_clockwise" />
+
+        <RadioButton
+            android:id="@+id/swirl_anticlockwise"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/swirl_anticlockwise" />
+    </RadioGroup>
+
 <Button
         android:id="@+id/next"
         android:layout_width="wrap_content"

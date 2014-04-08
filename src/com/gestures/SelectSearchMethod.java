@@ -1,6 +1,7 @@
 package com.gestures;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -10,6 +11,7 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.gestures.generated.R;
+import com.gestures.utils.Constants;
 
 public class SelectSearchMethod extends Activity {
 	private RadioGroup searchMethodGroup;
@@ -31,7 +33,6 @@ public class SelectSearchMethod extends Activity {
 		nextButton = (Button) findViewById(R.id.next);
 
 		nextButton.setOnClickListener(new OnClickListener() {
-
 			@Override
 			public void onClick(View v) {
 
@@ -44,6 +45,9 @@ public class SelectSearchMethod extends Activity {
 				Toast.makeText(SelectSearchMethod.this,
 						selectSearchMethodButton.getText(), Toast.LENGTH_SHORT)
 						.show();
+				Intent intent = new Intent(SelectSearchMethod.this, GestureTest.class);
+				intent.putExtra(Constants.SEARCH_METHOD, selectSearchMethodButton.getText());
+				startActivity(intent); 
 			}
 		});
 	}
