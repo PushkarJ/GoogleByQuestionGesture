@@ -16,6 +16,7 @@
 package com.gestures;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import android.app.Activity;
 import android.app.SearchManager;
@@ -28,6 +29,8 @@ import android.gesture.GestureOverlayView.OnGesturePerformedListener;
 import android.gesture.Prediction;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.util.TimeUtils;
+import android.text.format.Time;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -40,7 +43,7 @@ public class GestureTest extends Activity implements OnGesturePerformedListener 
   private GestureLibrary gestureLib;
   TextView textView ;
   String selectedText;
-  
+ 
 /** Called when the activity is first created. */
 
   @Override
@@ -62,6 +65,7 @@ public class GestureTest extends Activity implements OnGesturePerformedListener 
 		@Override
 		public boolean onTouch(View v, MotionEvent event)
 		{
+		    Log.i("customgestures","Start Timer:"+new Date().toString());			
 		    Log.i("customgestures", "Start:"+textView.getSelectionStart()+ " End: "+textView.getSelectionEnd());
 		    selectedText = textView.getText().subSequence(textView.getSelectionStart(), textView.getSelectionEnd()).toString();
 				return false;
@@ -76,10 +80,13 @@ public class GestureTest extends Activity implements OnGesturePerformedListener 
     ArrayList<Prediction> predictions = gestureLib.recognize(gesture);
     for (Prediction prediction : predictions) {
       if (prediction.score > 1.0) {
-        Intent intent = new Intent(Intent.ACTION_WEB_SEARCH);
+		Log.i("customgestures","Stop Timer:"+new Date().toString());
+		//TODO:Measure the difference between start and stop timings.
+    	Intent intent = new Intent(Intent.ACTION_WEB_SEARCH);
         String keyword=selectedText;
         intent.putExtra(SearchManager.QUERY, keyword);
         startActivity(intent);
+        
         //Toast.makeText(this, prediction.name, Toast.LENGTH_SHORT)
           //  .show();
       }
