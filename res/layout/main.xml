@@ -15,7 +15,7 @@
         </EditText>
 
         <ImageButton
-            android:id="@+id/imageButton1"
+            android:id="@+id/search_simulate"
             android:layout_width="40dip"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/editText1"
