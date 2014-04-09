@@ -29,4 +29,5 @@ Praesent ut massa placerat, pretium magna ut, pharetra sem. In tempus vestibulum
     <string name="advance">Advance</string>
     <string name="show_results">Show Results</string>
     <string name="no_results">No Results</string>
+    <string name="tryanothersearchmethod">Try another search method</string>
 </resources>

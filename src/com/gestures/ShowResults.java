@@ -11,6 +11,9 @@ import java.util.Set;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.gestures.generated.R;
@@ -65,5 +68,14 @@ public class ShowResults extends Activity
 		TextView resultsText = (TextView)findViewById(R.id.results);
 		resultsText.setText(resultsCSV.toString());
 		}
+		Button tryanothersearchmethod= (Button)findViewById(R.id.tryAnotherSearchMethod);
+		tryanothersearchmethod.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent pintent = new Intent(ShowResults.this, SelectSearchMethod.class);
+				startActivity(pintent);
+			}
+		});
 	}
 }

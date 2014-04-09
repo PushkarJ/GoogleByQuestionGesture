@@ -106,6 +106,7 @@ public class GestureTest extends Activity implements OnGesturePerformedListener 
 	});
     /* Send the hashtable to ShowResults Activity */
     Button showResults=(Button)findViewById(R.id.show_results);
+    showResults.setVisibility(Button.INVISIBLE);
     showResults.setOnClickListener(new OnClickListener() {
 		
 		@Override
@@ -118,6 +119,7 @@ public class GestureTest extends Activity implements OnGesturePerformedListener 
 	});
     if (iteration == 9) {
     	advance.setEnabled(false);
+    	showResults.setVisibility(Button.VISIBLE);
     }
     /* Bold the target text */
     final SpannableStringBuilder sb = new SpannableStringBuilder(textView.getText().toString());
