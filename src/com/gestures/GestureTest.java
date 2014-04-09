@@ -40,6 +40,7 @@ import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.gestures.generated.R;
 import com.gestures.utils.Constants;
@@ -166,6 +167,10 @@ public class GestureTest extends Activity implements OnGesturePerformedListener 
         results.put(String.valueOf(iteration), Double.valueOf((timetoCompleteTask/1000)));
         //Toast.makeText(this, prediction.name, Toast.LENGTH_SHORT)
           //  .show();
+    	}
+    	else
+    	{
+    		Toast.makeText(this, "Unrecognized gesture detected. Current search method is: "+searchMethod, Toast.LENGTH_LONG).show();
     	}
    }
  } 
