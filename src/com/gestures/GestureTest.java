@@ -54,8 +54,8 @@ public class GestureTest extends Activity implements OnGesturePerformedListener 
   int iteration = 0;
   final int[] targetStart = {146, 560, 613, 90, 604, 542, 217, 359, 236, 195};
   final int[] targetEnd = {149, 568, 619, 97, 610, 544, 222, 368, 241, 204};
-  private Date newerDate;
-  private Date olderDate;
+  private Date endTaskTime;
+  private Date startTaskTime;
 /** Called when the activity is first created. */
 
   @Override
@@ -120,8 +120,8 @@ public class GestureTest extends Activity implements OnGesturePerformedListener 
 		public boolean onTouch(View v, MotionEvent event)
 		{
 			//TODO: rename date variable
-			olderDate= new Date();
-		    Log.i("customgestures","Start Timer:"+olderDate.toString());			
+			startTaskTime= new Date();
+		    Log.i("customgestures","Start Timer:"+startTaskTime.toString());			
 		    Log.i("customgestures", "Start:"+textView.getSelectionStart()+ " End: "+textView.getSelectionEnd());
 		    selectedText = textView.getText().subSequence(textView.getSelectionStart(), textView.getSelectionEnd()).toString();
 				return false;
@@ -136,6 +136,8 @@ public class GestureTest extends Activity implements OnGesturePerformedListener 
     ArrayList<Prediction> predictions = gestureLib.recognize(gesture);
     int index=0;
     Prediction prediction;
+		// Go through all the gestures in the library till you find the one
+		// which has a higher prediction score
       do  
       {
     	  prediction = predictions.get(index++);
@@ -145,10 +147,9 @@ public class GestureTest extends Activity implements OnGesturePerformedListener 
         intent.putExtra(SearchManager.QUERY, keyword);
         startActivity(intent);
         //TODO:rename date variable
-        newerDate= new Date();
-        double timetoCompleteTask = ((double)(newerDate.getTime() - olderDate.getTime()));
+        endTaskTime= new Date();
+        double timetoCompleteTask = ((double)(endTaskTime.getTime() - startTaskTime.getTime()));
         Log.i("customgestures", "Time to complete the task: "+String.valueOf(timetoCompleteTask));
-        //TODO:Add the timer entry in the hashtable
         results.put(String.valueOf(iteration), Double.valueOf((timetoCompleteTask/1000)));
         //Toast.makeText(this, prediction.name, Toast.LENGTH_SHORT)
           //  .show();

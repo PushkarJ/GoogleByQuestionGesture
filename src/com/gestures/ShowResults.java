@@ -1,7 +1,11 @@
 package com.gestures;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Set;
 
 import android.app.Activity;
@@ -30,16 +34,28 @@ public class ShowResults extends Activity
 		if(results!=null)
 		{
 			Set<String> result_header=results.keySet();
-		for(String rh:result_header)
+			List<String> result_header_list = new ArrayList<String>(result_header);
+			Collections.sort(result_header_list,new Comparator<String>() {
+			    public int compare(String o1, String o2) {
+			        Integer i1 = Integer.parseInt(o1);
+			        Integer i2 = Integer.parseInt(o2);
+			        return (i1 < i2 ? -1 : (i1 == i2 ? 0 : 1));
+			    }
+			});
+		for(String rh:result_header_list)
 		{
 			resultsCSV.append(rh).append(",");
 		}
 		resultsCSV.append("Total Time");
 		resultsCSV.append(System.getProperty("line.separator"));
 		resultsCSV.append(searchMethod+",");
-		Collection<Double> result_values=results.values();
+		//TODO:continue
+		Collection result_values= results.values();
 		double total=0;
-		for(Double rh:result_values)
+		List<Double> result_values_list = new ArrayList<Double>(result_values);
+		Collections.sort(result_values_list);
+
+		for(Double rh:result_values_list)
 		{
 			resultsCSV.append(rh).append(",");
 			total+=rh;
