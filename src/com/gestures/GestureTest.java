@@ -74,7 +74,17 @@ public class GestureTest extends Activity implements OnGesturePerformedListener 
     gestureOverlayView.addView(inflate);
     gestureOverlayView.setGestureColor(Color.TRANSPARENT);
     gestureOverlayView.addOnGesturePerformedListener(this);
-    gestureLib = GestureLibraries.fromRawResource(this, R.raw.gestures);
+    if(searchMethod.equalsIgnoreCase(getResources().getString(R.string.question_mark)))
+    {
+    	gestureLib = GestureLibraries.fromRawResource(this, R.raw.question_gestures);
+    }
+	if (searchMethod.equalsIgnoreCase(getResources().getString(
+				R.string.swirl_anticlockwise))
+				|| searchMethod.equalsIgnoreCase(getResources().getString(
+						R.string.swirl_clockwise)))
+	{
+	    gestureLib = GestureLibraries.fromRawResource(this, R.raw.swirl_gestures);			
+    }
     if (!gestureLib.load()) {
       finish();
     }
@@ -138,10 +148,13 @@ public class GestureTest extends Activity implements OnGesturePerformedListener 
     Prediction prediction;
 		// Go through all the gestures in the library till you find the one
 		// which has a higher prediction score
-      do  
-      {
-    	  prediction = predictions.get(index++);
-		//Log.i("customgestures","Stop Timer:"+new Date().toString());
+		do {
+			prediction = predictions.get(index++);
+		} while (prediction.score < 1.0 && index < predictions.size());
+
+    	if(index < 4 )
+    	{
+    	  //Log.i("customgestures","Stop Timer:"+new Date().toString());
     	Intent intent = new Intent(Intent.ACTION_WEB_SEARCH);
         String keyword=selectedText;
         intent.putExtra(SearchManager.QUERY, keyword);
@@ -153,6 +166,6 @@ public class GestureTest extends Activity implements OnGesturePerformedListener 
         results.put(String.valueOf(iteration), Double.valueOf((timetoCompleteTask/1000)));
         //Toast.makeText(this, prediction.name, Toast.LENGTH_SHORT)
           //  .show();
-      }while(prediction.score < 1.0 || index == predictions.size());
+    	}
    }
  } 
