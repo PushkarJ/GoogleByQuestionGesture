@@ -52,8 +52,7 @@ public class ShowResults extends Activity
 		resultsCSV.append("Total Time");
 		resultsCSV.append(System.getProperty("line.separator"));
 		resultsCSV.append(searchMethod+",");
-		//TODO:continue
-		Collection result_values= results.values();
+		Collection<Double> result_values= results.values();
 		double total=0;
 		List<Double> result_values_list = new ArrayList<Double>(result_values);
 		Collections.sort(result_values_list);
