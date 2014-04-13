@@ -30,4 +30,5 @@ Praesent ut massa placerat, pretium magna ut, pharetra sem. In tempus vestibulum
     <string name="show_results">Show Results</string>
     <string name="no_results">No Results</string>
     <string name="tryanothersearchmethod">Try another search method</string>
+    <string name="no_paths">No Paths Recorded</string>
 </resources>

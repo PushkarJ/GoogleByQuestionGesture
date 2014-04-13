@@ -67,6 +67,17 @@ public class ShowResults extends Activity
 		TextView resultsText = (TextView)findViewById(R.id.results);
 		resultsText.setText(resultsCSV.toString());
 		}
+		
+		// Paths SVG
+		ArrayList<ArrayList<float[]>> paths =(ArrayList<ArrayList<float[]>>) intent.getExtras().get(
+				Constants.PATHS);
+		String polylineElt = "";
+		for (ArrayList<float[]> path:paths) {
+			polylineElt += polylineEltFromPoints(path);
+		}
+		TextView svgText = (TextView) findViewById(R.id.paths);
+		svgText.setText(polylineElt);
+		
 		Button tryanothersearchmethod= (Button)findViewById(R.id.tryAnotherSearchMethod);
 		tryanothersearchmethod.setOnClickListener(new OnClickListener() {
 			
@@ -76,5 +87,10 @@ public class ShowResults extends Activity
 				startActivity(pintent);
 			}
 		});
+	}
+
+	private String polylineEltFromPoints(ArrayList<float[]> path) {
+		// TODO Auto-generated method stub
+		return "";
 	}
 }

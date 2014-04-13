@@ -75,6 +75,9 @@ public class GestureTest extends Activity implements OnGesturePerformedListener 
 		results = intent.getExtras().get(Constants.RESULTS) == null ? new HashMap<String, Double>(
 				11) : (HashMap<String, Double>) intent.getExtras().get(
 				Constants.RESULTS);
+		gestureRecord = intent.getExtras().get(Constants.PATHS) == null ? new ArrayList<ArrayList<float[]>>(
+				) : (ArrayList<ArrayList<float[]>>) intent.getExtras().get(
+				Constants.PATHS);
 
 		GestureOverlayView gestureOverlayView = new GestureOverlayView(this);
 		View inflate = getLayoutInflater().inflate(R.layout.main, null);
@@ -121,6 +124,7 @@ public class GestureTest extends Activity implements OnGesturePerformedListener 
 				Intent intent = new Intent(GestureTest.this, ShowResults.class);
 				intent.putExtra(Constants.SEARCH_METHOD, searchMethod);
 				intent.putExtra(Constants.RESULTS, results);
+				intent.putExtra(Constants.PATHS, gestureRecord);
 				startActivity(intent);
 			}
 		});
