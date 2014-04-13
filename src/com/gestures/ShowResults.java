@@ -90,7 +90,12 @@ public class ShowResults extends Activity
 	}
 
 	private String polylineEltFromPoints(ArrayList<float[]> path) {
-		// TODO Auto-generated method stub
-		return "";
+		String polyline = "<polyline points=\" ";
+		for (float[] pt:path) {
+			polyline += String.format("%.2f,%.2f ", pt[0], pt[1]);
+		}
+		polyline += "\" />";
+		polyline += System.getProperty("line.separator");
+		return polyline;
 	}
 }
