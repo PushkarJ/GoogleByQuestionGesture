@@ -29,6 +29,8 @@ import android.gesture.GestureOverlayView;
 import android.gesture.GestureOverlayView.OnGesturePerformedListener;
 import android.gesture.Prediction;
 import android.graphics.Color;
+import android.graphics.Path;
+import android.graphics.PathMeasure;
 import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
@@ -59,6 +61,7 @@ public class GestureTest extends Activity implements OnGesturePerformedListener 
 	final int[] targetEnd = { 149, 568, 619, 97, 610, 544, 222, 368, 241, 204 };
 	private Date endTaskTime;
 	private Date startTaskTime;
+	ArrayList<ArrayList<float[]>> gestureRecord = new ArrayList<ArrayList<float[]>>();
 
 	/** Called when the activity is first created. */
 
@@ -164,6 +167,24 @@ public class GestureTest extends Activity implements OnGesturePerformedListener 
 			}
 		});
 	}
+	
+	/** Helper method to save the path of the gesture as an ArrayList of points. 
+	 *  
+	 *  Samples from path are not time-based. */
+	private void saveGesturePath(Gesture gesture) {
+		final int samples = 16; // Number of samples from path
+		ArrayList<float[]> points = new ArrayList<float[]>();
+		PathMeasure measure = new PathMeasure(gesture.toPath(),false);
+		float[] coordinateContainer = {0f, 0f};
+		
+		final float step = measure.getLength()/samples;
+		for (int iSample = 0; iSample < samples; iSample++) {
+			measure.getPosTan(step * iSample, coordinateContainer, null);
+			points.add(coordinateContainer.clone());
+		}
+		
+		gestureRecord.add(points);
+	}
 
 	@Override
 	public void onGesturePerformed(GestureOverlayView overlay, Gesture gesture) {
@@ -191,6 +212,7 @@ public class GestureTest extends Activity implements OnGesturePerformedListener 
 							+ String.valueOf(timetoCompleteTask));
 			results.put(String.valueOf(iteration),
 					Double.valueOf((timetoCompleteTask / 1000)));
+			saveGesturePath(gesture);
 			// Toast.makeText(this, prediction.name, Toast.LENGTH_SHORT)
 			// .show();
 		} else {
