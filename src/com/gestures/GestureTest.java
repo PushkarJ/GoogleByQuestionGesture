@@ -62,9 +62,8 @@ public class GestureTest extends Activity implements OnGesturePerformedListener 
 	private Date endTaskTime;
 	private Date startTaskTime;
 	ArrayList<ArrayList<float[]>> gestureRecord = new ArrayList<ArrayList<float[]>>();
-
+	
 	/** Called when the activity is first created. */
-
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 
@@ -106,12 +105,7 @@ public class GestureTest extends Activity implements OnGesturePerformedListener 
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				finish();
-				Intent next = getIntent();
-				next.putExtra("iteration", iteration + 1);
-				next.putExtra(Constants.RESULTS, results);
-				startActivity(next);
+				advance();
 			}
 		});
 		/* Send the hashtable to ShowResults Activity */
@@ -121,11 +115,7 @@ public class GestureTest extends Activity implements OnGesturePerformedListener 
 
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(GestureTest.this, ShowResults.class);
-				intent.putExtra(Constants.SEARCH_METHOD, searchMethod);
-				intent.putExtra(Constants.RESULTS, results);
-				intent.putExtra(Constants.PATHS, gestureRecord);
-				startActivity(intent);
+				advance();
 			}
 		});
 		if (iteration == 9) {
@@ -163,13 +153,37 @@ public class GestureTest extends Activity implements OnGesturePerformedListener 
 
 			@Override
 			public void onClick(View v) {
-				EditText searchTerm=(EditText)findViewById(R.id.editText1);				
-				Intent intent = new Intent(Intent.ACTION_WEB_SEARCH);
-				String keyword = searchTerm.getText().toString();
-				intent.putExtra(SearchManager.QUERY, keyword);
-				startActivity(intent);
+				advance();
 			}
 		});
+	}
+	
+	/** Move to the next view. 
+	 *  If the current view is the final test, move to the results page. */
+	private void advance() {
+		// Record timing data
+		endTaskTime = new Date();
+		double timetoCompleteTask = ((double) (endTaskTime.getTime() - startTaskTime
+				.getTime()));
+		Log.i("customgestures",
+				"Time to complete the task: "
+						+ String.valueOf(timetoCompleteTask));
+		results.put(String.valueOf(iteration),
+				Double.valueOf((timetoCompleteTask / 1000)));
+		
+		// Go to next view
+		finish();
+		Intent next;
+		if (iteration < 9) {
+			next = getIntent();
+			next.putExtra("iteration", iteration + 1);
+		} else {
+			next = new Intent(GestureTest.this, ShowResults.class);
+		}
+		next.putExtra(Constants.SEARCH_METHOD, searchMethod);
+		next.putExtra(Constants.RESULTS, results);
+		next.putExtra(Constants.PATHS, gestureRecord);
+		startActivity(next);
 	}
 	
 	/** Helper method to save the path of the gesture as an ArrayList of points. 
@@ -203,20 +217,8 @@ public class GestureTest extends Activity implements OnGesturePerformedListener 
 
 		if (index < 4) {
 			// Log.i("customgestures","Stop Timer:"+new Date().toString());
-			Intent intent = new Intent(Intent.ACTION_WEB_SEARCH);
-			String keyword = selectedText;
-			intent.putExtra(SearchManager.QUERY, keyword);
-			startActivity(intent);
-			// TODO:rename date variable
-			endTaskTime = new Date();
-			double timetoCompleteTask = ((double) (endTaskTime.getTime() - startTaskTime
-					.getTime()));
-			Log.i("customgestures",
-					"Time to complete the task: "
-							+ String.valueOf(timetoCompleteTask));
-			results.put(String.valueOf(iteration),
-					Double.valueOf((timetoCompleteTask / 1000)));
 			saveGesturePath(gesture);
+			advance();
 			// Toast.makeText(this, prediction.name, Toast.LENGTH_SHORT)
 			// .show();
 		} else {
