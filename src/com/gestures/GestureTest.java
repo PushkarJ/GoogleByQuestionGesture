@@ -57,7 +57,7 @@ public class GestureTest extends Activity implements OnGesturePerformedListener 
 	HashMap<String, Double> results;
 	String searchMethod;
 	int iteration = 0;
-	// private final int numTests = 2; // For quick testing
+//	private final int numTests = 2; // For quick testing
 	private final int numTests = 10;
 	final int[] targetStart = { 146, 560, 613, 90, 604, 542, 217, 359, 236, 195 };
 	final int[] targetEnd = { 149, 568, 619, 97, 610, 544, 222, 368, 241, 204 };
@@ -221,8 +221,8 @@ public class GestureTest extends Activity implements OnGesturePerformedListener 
 			// Log.i("customgestures","Stop Timer:"+new Date().toString());
 			saveGesturePath(gesture);
 			advance();
-			// Toast.makeText(this, prediction.name, Toast.LENGTH_SHORT)
-			// .show();
+			Toast.makeText(this, "Successful method " + searchMethod, 
+					Toast.LENGTH_SHORT).show();
 		} else {
 			Toast.makeText(
 					this,

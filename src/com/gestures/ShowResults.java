@@ -9,6 +9,9 @@ import java.util.List;
 import java.util.Set;
 
 import android.app.Activity;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -78,8 +81,35 @@ public class ShowResults extends Activity
 		TextView svgText = (TextView) findViewById(R.id.paths);
 		svgText.setText(polylineElt);
 		
-		Button tryanothersearchmethod= (Button)findViewById(R.id.tryAnotherSearchMethod);
-		tryanothersearchmethod.setOnClickListener(new OnClickListener() {
+		// Yanks the CSV to the clipboard
+		Button copycsv = (Button) findViewById(R.id.copycsv);
+		copycsv.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+				TextView resultsText = (TextView)findViewById(R.id.results);
+				ClipData clip = ClipData.newPlainText("CSV Data", resultsText.getText());
+				clipboard.setPrimaryClip(clip);
+			}
+		});
+		
+		// Yanks the SVG to the clipboard
+		Button copysvg = (Button) findViewById(R.id.copysvg);
+		copysvg.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+				TextView svgText = (TextView) findViewById(R.id.paths);
+				ClipData clip = ClipData.newPlainText("CSV Data", svgText.getText());
+				clipboard.setPrimaryClip(clip);
+			}
+		});
+		
+		// Returns to the method selection page		
+		Button restart= (Button)findViewById(R.id.restart);
+		restart.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
