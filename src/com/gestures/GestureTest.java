@@ -57,6 +57,7 @@ public class GestureTest extends Activity implements OnGesturePerformedListener 
 	HashMap<String, Double> results;
 	String searchMethod;
 	int iteration = 0;
+	private final int numTests = 10;
 	final int[] targetStart = { 146, 560, 613, 90, 604, 542, 217, 359, 236, 195 };
 	final int[] targetEnd = { 149, 568, 619, 97, 610, 544, 222, 368, 241, 204 };
 	private Date endTaskTime;
@@ -118,7 +119,7 @@ public class GestureTest extends Activity implements OnGesturePerformedListener 
 				advance();
 			}
 		});
-		if (iteration == 9) {
+		if (iteration == (numTests-1)) {
 			advance.setEnabled(false);
 			showResults.setVisibility(Button.VISIBLE);
 		}
@@ -174,7 +175,7 @@ public class GestureTest extends Activity implements OnGesturePerformedListener 
 		// Go to next view
 		finish();
 		Intent next;
-		if (iteration < 9) {
+		if (iteration < (numTests-1)) {
 			next = getIntent();
 			next.putExtra("iteration", iteration + 1);
 		} else {
