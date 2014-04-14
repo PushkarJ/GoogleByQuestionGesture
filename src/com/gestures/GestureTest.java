@@ -102,28 +102,7 @@ public class GestureTest extends Activity implements OnGesturePerformedListener 
 		}
 		setContentView(gestureOverlayView);
 		textView = (TextView) findViewById(R.id.hellotext);
-		Button advance = (Button) findViewById(R.id.advance);
-		advance.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				advance();
-			}
-		});
-		/* Send the hashtable to ShowResults Activity */
-		Button showResults = (Button) findViewById(R.id.show_results);
-		showResults.setVisibility(Button.INVISIBLE);
-		showResults.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				advance();
-			}
-		});
-		if (iteration == (numTests-1)) {
-			advance.setEnabled(false);
-			showResults.setVisibility(Button.VISIBLE);
-		}
+		
 		/* Bold the target text */
 		final SpannableStringBuilder sb = new SpannableStringBuilder(textView
 				.getText().toString());
