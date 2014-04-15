@@ -20,7 +20,6 @@ import java.util.Date;
 import java.util.HashMap;
 
 import android.app.Activity;
-import android.app.SearchManager;
 import android.content.Intent;
 import android.gesture.Gesture;
 import android.gesture.GestureLibraries;
@@ -29,7 +28,6 @@ import android.gesture.GestureOverlayView;
 import android.gesture.GestureOverlayView.OnGesturePerformedListener;
 import android.gesture.Prediction;
 import android.graphics.Color;
-import android.graphics.Path;
 import android.graphics.PathMeasure;
 import android.os.Bundle;
 import android.text.Spannable;
@@ -40,8 +38,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
-import android.widget.Button;
-import android.widget.EditText;
+
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;

@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical" >
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
     <TextView android:id="@+id/results"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -13,30 +18,31 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/no_paths"
-        android:textSize="9sp" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:textSize="9sp"
+        android:layout_below="@id/results" />
 
         <Button
             android:id="@+id/copycsv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/copycsv" />
+            android:text="@string/copycsv"
+            android:layout_below="@id/paths" />
 
         <Button
             android:id="@+id/copysvg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/copysvg" />
+            android:text="@string/copysvg" 
+            android:layout_below="@id/paths"
+            android:layout_toRightOf="@id/copycsv"/>
 
         <Button
             android:id="@+id/restart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/restart" />
+            android:text="@string/restart" 
+            android:layout_below="@id/paths"
+            android:layout_toRightOf="@id/copysvg"/>
 
-    </LinearLayout>
-
-</LinearLayout>
+</RelativeLayout>
+</ScrollView>
