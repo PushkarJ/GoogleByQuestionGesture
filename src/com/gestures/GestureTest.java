@@ -83,18 +83,25 @@ public class GestureTest extends Activity implements OnGesturePerformedListener 
 		gestureOverlayView.setGestureColor(Color.TRANSPARENT);
 		gestureOverlayView.addOnGesturePerformedListener(this);
 		if (searchMethod.equalsIgnoreCase(getResources().getString(
-				R.string.question_mark))) {
+				R.string.question_mark)))
+		{
 			gestureLib = GestureLibraries.fromRawResource(this,
 					R.raw.question_gestures);
 		}
 		if (searchMethod.equalsIgnoreCase(getResources().getString(
-				R.string.swirl_anticlockwise))
-				|| searchMethod.equalsIgnoreCase(getResources().getString(
-						R.string.swirl_clockwise))) {
+				R.string.swirl_anticlockwise)))
+		{
 			gestureLib = GestureLibraries.fromRawResource(this,
-					R.raw.swirl_gestures);
+					R.raw.swirl_gesture_anticlockwise);
 		}
-		if (gestureLib!=null && !gestureLib.load()) {
+		if(searchMethod.equalsIgnoreCase(getResources().getString(
+				R.string.swirl_clockwise)))
+		{
+			gestureLib = GestureLibraries.fromRawResource(this,
+					R.raw.swirl_gesture_clockwise);
+		}
+		if (gestureLib != null && !gestureLib.load())
+		{
 			finish();
 		}
 		setContentView(gestureOverlayView);
@@ -114,8 +121,6 @@ public class GestureTest extends Activity implements OnGesturePerformedListener 
 			public boolean onTouch(View v, MotionEvent event) {
 				// TODO: rename date variable
 				startTaskTime = new Date();
-				Log.i("customgestures",
-						"Start Timer:" + startTaskTime.toString());
 				Log.i("customgestures", "Start:" + textView.getSelectionStart()
 						+ " End: " + textView.getSelectionEnd());
 				selectedText = textView
@@ -189,17 +194,20 @@ public class GestureTest extends Activity implements OnGesturePerformedListener 
 		Prediction prediction;
 		// Go through all the gestures in the library till you find the one
 		// which has a higher prediction score
-		do {
+		do
+		{
 			prediction = predictions.get(index++);
 		} while (prediction.score < 1.0 && index < predictions.size());
 
-		if (index < 4) {
+		if (index < 4)
+		{
 			// Log.i("customgestures","Stop Timer:"+new Date().toString());
 			saveGesturePath(gesture);
 			advance();
 			Toast.makeText(this, "Successful method " + searchMethod, 
 					Toast.LENGTH_SHORT).show();
-		} else {
+		}
+		else {
 			Toast.makeText(
 					this,
 					"Unrecognized gesture detected. Current search method is: "
