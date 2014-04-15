@@ -111,7 +111,6 @@ public class GesturePractice extends Activity implements OnGesturePerformedListe
 			ImageButton button = (ImageButton) findViewById(R.id.search_simulate);
 			button.setVisibility(View.VISIBLE);			
 			searchBox.setFocusableInTouchMode(true);
-			searchBox.requestFocus();
 		}
 		
 		if (gestureLib != null && !gestureLib.load())
@@ -119,6 +118,7 @@ public class GesturePractice extends Activity implements OnGesturePerformedListe
 			finish();
 		}
 		textView = (TextView) findViewById(R.id.hellotext);
+		textView.requestFocus();
 		
 		/* Bold the target text */ 
 		final SpannableStringBuilder sb = new SpannableStringBuilder(textView

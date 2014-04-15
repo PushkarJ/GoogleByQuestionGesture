@@ -116,7 +116,6 @@ public class GestureTest extends Activity implements OnGesturePerformedListener 
 		EditText searchBox = (EditText) findViewById(R.id.searchBox);
 		searchBox.setVisibility(View.VISIBLE);
 		searchBox.setFocusableInTouchMode(true);
-		searchBox.requestFocus();
 		ImageButton button = (ImageButton) findViewById(R.id.search_simulate);
 		button.setVisibility(View.VISIBLE);
 	}
@@ -125,6 +124,7 @@ public class GestureTest extends Activity implements OnGesturePerformedListener 
 			finish();
 		}
 		textView = (TextView) findViewById(R.id.hellotext);
+		textView.requestFocus();
 
 		/* Bold the target text */
 		final SpannableStringBuilder sb = new SpannableStringBuilder(textView
