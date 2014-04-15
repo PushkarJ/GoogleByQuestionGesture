@@ -40,7 +40,7 @@ public class GesturePractice extends Activity implements OnGesturePerformedListe
 //	private final int numTests = 2; // For quick testing
 	final int[] targetStart = { 146, 560, 613, 90, 604, 542, 217, 359, 236, 195 };
 	final int[] targetEnd = { 149, 568, 619, 97, 610, 544, 222, 368, 241, 204 };
-	ArrayList<ArrayList<float[]>> gestureRecord = new ArrayList<ArrayList<float[]>>();
+	ArrayList<ArrayList<float[]>> gestureRecord;
 	
 	@Override
 	public void onGesturePerformed(GestureOverlayView overlay, Gesture gesture) {

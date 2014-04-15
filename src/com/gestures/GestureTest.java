@@ -59,7 +59,7 @@ public class GestureTest extends Activity implements OnGesturePerformedListener 
 	final int[] targetEnd = { 149, 568, 619, 97, 610, 544, 222, 368, 241, 204 };
 	private Date endTaskTime;
 	private Date startTaskTime;
-	ArrayList<ArrayList<float[]>> gestureRecord = new ArrayList<ArrayList<float[]>>();
+	ArrayList<ArrayList<float[]>> gestureRecord;
 	
 	/** Called when the activity is first created. */
 	@Override
