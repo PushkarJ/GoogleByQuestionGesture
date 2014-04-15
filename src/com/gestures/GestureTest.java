@@ -163,6 +163,12 @@ public class GestureTest extends Activity implements OnGesturePerformedListener 
 	/** Move to the next view. 
 	 *  If the current view is the final test, move to the results page. */
 	private void advance() {
+		if (startTaskTime == null) {
+			// If we never started, we'd best not finish
+			Toast.makeText(this, "Please select the search text first", 
+					Toast.LENGTH_SHORT).show();
+			return;
+		}
 		// Record timing data
 		endTaskTime = new Date();
 		double timetoCompleteTask = ((double) (endTaskTime.getTime() - startTaskTime
