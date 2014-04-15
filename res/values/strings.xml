@@ -18,12 +18,12 @@
     <string name="app_name">Search Gesture Tester</string>
     <string name="hello">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam porttitor nisi posuere ipsum aliquet, vitae tristique est egestas. Proin in justo in dui viverra gravida. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Suspendisse potenti. Donec posuere mauris eget elit pharetra dapibus. Vivamus in malesuada dolor. Phasellus aliquet ligula quis commodo commodo. Vestibulum eget purus in elit semper fringilla a quis diam. Praesent vitae rhoncus turpis, eu iaculis nisl. Sed ligula magna, tristique eu metus euismod, molestie condimentum arcu. Aenean pharetra, turpis a varius vulputate, quam mi luctus nisi, vel accumsan nibh leo consequat risus.</string>
     <string name="search_button_desc">Search</string>
-    <string name="normal_search">Normal search</string>
-    <string name="question_mark">Question mark gesture</string>
-    <string name="swirl_clockwise">Swirl clockwise</string>
-    <string name="swirl_anticlockwise">Swirl anticlockwise</string>
+    <string name="normal_search">Normal Search</string>
+    <string name="question_mark">Question Mark Gesture</string>
+    <string name="swirl_clockwise">Swirl Clockwise Gesture</string>
+    <string name="swirl_anticlockwise">Swirl Counter-Clockwise Gesture</string>
     <string name="next">Next</string>
-    <string name="welcome">Welcome, please select one of the four search methods and click next</string>
+    <string name="welcome">Select a search method and click "Next" to begin the tests. Activate the "Practice Tests" toggle to become familiar with the search methods before running the tests.</string>
     <string name="advance">Advance</string>
     <string name="show_results">Show Results</string>
     <string name="no_results">No Results</string>

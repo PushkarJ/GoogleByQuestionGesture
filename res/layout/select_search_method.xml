@@ -42,10 +42,10 @@
 
     <ToggleButton
         android:id="@+id/practice_toggle"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textOn="Practice Tests"
-        android:textOff="Actual Tests" />
+        android:textOff="Practice Tests"
+        android:textOn="Practice Tests" />
 
     <Button
         android:id="@+id/next"
