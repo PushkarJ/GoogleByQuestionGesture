@@ -61,13 +61,15 @@ public class SelectSearchMethod extends Activity {
 
 				// find the radiobutton by returned id
 				selectSearchMethodButton = (RadioButton) findViewById(selectedId);
-				Toast.makeText(SelectSearchMethod.this,
-						selectSearchMethodButton.getText(), Toast.LENGTH_SHORT)
-						.show();
-				Intent intent = new Intent(SelectSearchMethod.this, test);
-				intent.putExtra(Constants.SEARCH_METHOD, selectSearchMethodButton.getText());
-				startActivity(intent); 
-
+				if(selectSearchMethodButton != null)
+				{
+					Toast.makeText(SelectSearchMethod.this,
+							selectSearchMethodButton.getText(), Toast.LENGTH_SHORT)
+							.show();
+					Intent intent = new Intent(SelectSearchMethod.this, test);
+					intent.putExtra(Constants.SEARCH_METHOD, selectSearchMethodButton.getText());
+					startActivity(intent); 
+				}
 			}
 		});
 	}
