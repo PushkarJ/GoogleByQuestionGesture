@@ -1,39 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
 
         <EditText
             android:id="@+id/searchBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:ems="10"
-            android:inputType="text" 
-            android:focusable="false">
-        </EditText>
+            android:focusable="false"
+            android:inputType="text" />
 
         <ImageButton
             android:id="@+id/search_simulate"
-            android:layout_width="40dip"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/searchBox"
             android:contentDescription="@string/search_button_desc"
             android:src="@android:drawable/ic_menu_search" />
 
+    </LinearLayout>
 
-<TextView  
-    android:id="@+id/hellotext"
-    android:layout_width="fill_parent" 
-    android:layout_height="fill_parent" 
-    android:text="@string/hello"
-    android:textSize="24sp"
-    android:layout_below="@id/searchBox"
-    android:textIsSelectable="true"/>
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
 
-</RelativeLayout> 
-</ScrollView>
+        <TextView
+            android:id="@+id/hellotext"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:text="@string/hello"
+            android:textIsSelectable="true"
+            android:textSize="24sp" />
+
+    </ScrollView>
+
+</LinearLayout>
