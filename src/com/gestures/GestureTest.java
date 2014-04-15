@@ -106,9 +106,9 @@ public class GestureTest extends Activity implements OnGesturePerformedListener 
 		}
 		setContentView(gestureOverlayView);
 		EditText searchBox = (EditText) findViewById(R.id.searchBox);
-		searchBox.setVisibility(View.INVISIBLE);
+		searchBox.setEnabled(false);
 		ImageButton button = (ImageButton) findViewById(R.id.search_simulate);
-		button.setVisibility(View.INVISIBLE);
+		button.setEnabled(false);
 	}
 	else 
 	{
