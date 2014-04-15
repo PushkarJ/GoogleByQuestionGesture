@@ -9,7 +9,7 @@
     android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/editText1"
+            android:id="@+id/searchBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -21,7 +21,7 @@
             android:id="@+id/search_simulate"
             android:layout_width="40dip"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/editText1"
+            android:layout_toRightOf="@id/searchBox"
             android:contentDescription="@string/search_button_desc"
             android:src="@android:drawable/ic_menu_search" />
 
@@ -32,7 +32,7 @@
     android:layout_height="fill_parent" 
     android:text="@string/hello"
     android:textSize="24sp"
-    android:layout_below="@id/editText1"
+    android:layout_below="@id/searchBox"
     android:textIsSelectable="true"/>
 
 </RelativeLayout> 

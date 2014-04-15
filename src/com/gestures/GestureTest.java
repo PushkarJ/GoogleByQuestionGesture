@@ -27,7 +27,6 @@ import android.gesture.GestureLibrary;
 import android.gesture.GestureOverlayView;
 import android.gesture.GestureOverlayView.OnGesturePerformedListener;
 import android.gesture.Prediction;
-import android.graphics.Color;
 import android.graphics.PathMeasure;
 import android.os.Bundle;
 import android.text.Spannable;
@@ -38,7 +37,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
-
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -80,8 +79,9 @@ public class GestureTest extends Activity implements OnGesturePerformedListener 
 		GestureOverlayView gestureOverlayView = new GestureOverlayView(this);
 		View inflate = getLayoutInflater().inflate(R.layout.main, null);
 		gestureOverlayView.addView(inflate);
-		gestureOverlayView.setGestureColor(Color.TRANSPARENT);
-		gestureOverlayView.addOnGesturePerformedListener(this);
+/*		gestureOverlayView.setGestureColor(Color.TRANSPARENT);
+*/		gestureOverlayView.setGestureVisible(false);
+
 		if (searchMethod.equalsIgnoreCase(getResources().getString(
 				R.string.question_mark)))
 		{
@@ -100,11 +100,23 @@ public class GestureTest extends Activity implements OnGesturePerformedListener 
 			gestureLib = GestureLibraries.fromRawResource(this,
 					R.raw.swirl_gesture_clockwise);
 		}
+		
+		if(searchMethod.equalsIgnoreCase(getResources().getString(R.string.normal_search))== false)
+		{
+			gestureOverlayView.addOnGesturePerformedListener(this);
+			setContentView(gestureOverlayView);
+		}
+		else
+		{
+			setContentView(gestureOverlayView);
+			EditText searchBox=(EditText)findViewById(R.id.searchBox);
+			searchBox.setFocusableInTouchMode(true);
+			searchBox.requestFocus();
+		}
 		if (gestureLib != null && !gestureLib.load())
 		{
 			finish();
 		}
-		setContentView(gestureOverlayView);
 		textView = (TextView) findViewById(R.id.hellotext);
 		
 		/* Bold the target text */
