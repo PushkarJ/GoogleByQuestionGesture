@@ -12,9 +12,11 @@ import android.gesture.GestureLibrary;
 import android.gesture.GestureOverlayView;
 import android.gesture.GestureOverlayView.OnGesturePerformedListener;
 import android.gesture.Prediction;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
+import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -125,7 +127,11 @@ public class GesturePractice extends Activity implements OnGesturePerformedListe
 				.getText().toString());
 		final StyleSpan bdit = new StyleSpan(
 				android.graphics.Typeface.BOLD_ITALIC);
+		final ForegroundColorSpan fgc = new ForegroundColorSpan(
+				Color.rgb(0, 0, 255));
 		sb.setSpan(bdit, targetStart[iteration], targetEnd[iteration],
+				Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
+		sb.setSpan(fgc, targetStart[iteration], targetEnd[iteration], 
 				Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
 		textView.setText(sb);
 
