@@ -81,33 +81,31 @@ public class GestureTest extends Activity implements OnGesturePerformedListener 
 		gestureOverlayView.addView(inflate);
 /*		gestureOverlayView.setGestureColor(Color.TRANSPARENT);
 */		gestureOverlayView.setGestureVisible(false);
-
-		if (searchMethod.equalsIgnoreCase(getResources().getString(
-				R.string.question_mark)))
-		{
-			gestureLib = GestureLibraries.fromRawResource(this,
-					R.raw.question_gestures);
-		}
-		if (searchMethod.equalsIgnoreCase(getResources().getString(
-				R.string.swirl_anticlockwise)))
-		{
-			gestureLib = GestureLibraries.fromRawResource(this,
-					R.raw.swirl_gesture_anticlockwise);
-		}
-		if(searchMethod.equalsIgnoreCase(getResources().getString(
-				R.string.swirl_clockwise)))
-		{
-			gestureLib = GestureLibraries.fromRawResource(this,
-					R.raw.swirl_gesture_clockwise);
-		}
 		
 		if(searchMethod.equalsIgnoreCase(getResources().getString(R.string.normal_search))== false)
 		{
 			gestureOverlayView.addOnGesturePerformedListener(this);
 			setContentView(gestureOverlayView);
 		}
-		else
+		else // Using gesture
 		{
+			if (searchMethod.equalsIgnoreCase(getResources().getString(
+					R.string.question_mark)))
+			{
+				gestureLib = GestureLibraries.fromRawResource(this,
+						R.raw.question_gestures);
+			} else if (searchMethod.equalsIgnoreCase(getResources().getString(
+					R.string.swirl_anticlockwise)))
+			{
+				gestureLib = GestureLibraries.fromRawResource(this,
+						R.raw.swirl_gesture_anticlockwise);
+			} else if(searchMethod.equalsIgnoreCase(getResources().getString(
+					R.string.swirl_clockwise)))
+			{
+				gestureLib = GestureLibraries.fromRawResource(this,
+						R.raw.swirl_gesture_clockwise);
+			}
+			
 			setContentView(gestureOverlayView);
 			EditText searchBox=(EditText)findViewById(R.id.searchBox);
 			searchBox.setFocusableInTouchMode(true);
