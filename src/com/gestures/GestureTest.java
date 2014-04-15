@@ -82,41 +82,50 @@ public class GestureTest extends Activity implements OnGesturePerformedListener 
 /*		gestureOverlayView.setGestureColor(Color.TRANSPARENT);
 */		gestureOverlayView.setGestureVisible(false);
 		
-		if(searchMethod.equalsIgnoreCase(getResources().getString(R.string.normal_search))== false)
+	if(searchMethod.equalsIgnoreCase(getResources().getString(R.string.normal_search))== false)
+	{
+		gestureOverlayView.addOnGesturePerformedListener(this);
+
+		if (searchMethod.equalsIgnoreCase(getResources().getString(
+			R.string.question_mark)))
 		{
-			gestureOverlayView.addOnGesturePerformedListener(this);
-			setContentView(gestureOverlayView);
+			gestureLib = GestureLibraries.fromRawResource(this,
+				R.raw.question_gestures);
+		} 
+		else if (searchMethod.equalsIgnoreCase(getResources().getString(
+			R.string.swirl_anticlockwise)))
+		{
+			gestureLib = GestureLibraries.fromRawResource(this,
+				R.raw.swirl_gesture_anticlockwise);
 		}
-		else // Using gesture
+		else if(searchMethod.equalsIgnoreCase(getResources().getString(
+			R.string.swirl_clockwise)))
 		{
-			if (searchMethod.equalsIgnoreCase(getResources().getString(
-					R.string.question_mark)))
-			{
-				gestureLib = GestureLibraries.fromRawResource(this,
-						R.raw.question_gestures);
-			} else if (searchMethod.equalsIgnoreCase(getResources().getString(
-					R.string.swirl_anticlockwise)))
-			{
-				gestureLib = GestureLibraries.fromRawResource(this,
-						R.raw.swirl_gesture_anticlockwise);
-			} else if(searchMethod.equalsIgnoreCase(getResources().getString(
-					R.string.swirl_clockwise)))
-			{
-				gestureLib = GestureLibraries.fromRawResource(this,
-						R.raw.swirl_gesture_clockwise);
-			}
-			
-			setContentView(gestureOverlayView);
-			EditText searchBox=(EditText)findViewById(R.id.searchBox);
-			searchBox.setFocusableInTouchMode(true);
-			searchBox.requestFocus();
+			gestureLib = GestureLibraries.fromRawResource(this,
+				R.raw.swirl_gesture_clockwise);
 		}
-		if (gestureLib != null && !gestureLib.load())
-		{
+		setContentView(gestureOverlayView);
+		EditText searchBox = (EditText) findViewById(R.id.searchBox);
+		searchBox.setVisibility(View.INVISIBLE);
+		ImageButton button = (ImageButton) findViewById(R.id.search_simulate);
+		button.setVisibility(View.INVISIBLE);
+	}
+	else 
+	{
+		setContentView(gestureOverlayView);
+		EditText searchBox = (EditText) findViewById(R.id.searchBox);
+		searchBox.setVisibility(View.VISIBLE);
+		searchBox.setFocusableInTouchMode(true);
+		searchBox.requestFocus();
+		ImageButton button = (ImageButton) findViewById(R.id.search_simulate);
+		button.setVisibility(View.VISIBLE);
+	}
+		//setContentView(gestureOverlayView);
+		if (gestureLib != null && !gestureLib.load()) {
 			finish();
 		}
 		textView = (TextView) findViewById(R.id.hellotext);
-		
+
 		/* Bold the target text */
 		final SpannableStringBuilder sb = new SpannableStringBuilder(textView
 				.getText().toString());

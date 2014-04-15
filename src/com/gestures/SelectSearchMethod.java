@@ -21,7 +21,7 @@ public class SelectSearchMethod extends Activity {
 	private RadioGroup searchMethodGroup;
 	private RadioButton selectSearchMethodButton;
 	private Button nextButton;
-	Class test = null;
+	Class test = GestureTest.class;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +64,7 @@ public class SelectSearchMethod extends Activity {
 				Toast.makeText(SelectSearchMethod.this,
 						selectSearchMethodButton.getText(), Toast.LENGTH_SHORT)
 						.show();
-				Intent intent=new Intent(SelectSearchMethod.this, test);
+				Intent intent = new Intent(SelectSearchMethod.this, test);
 				intent.putExtra(Constants.SEARCH_METHOD, selectSearchMethodButton.getText());
 				startActivity(intent); 
 

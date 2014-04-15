@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import android.app.Activity;
+import android.app.SearchManager;
 import android.content.Intent;
 import android.gesture.Gesture;
 import android.gesture.GestureLibraries;
 import android.gesture.GestureLibrary;
 import android.gesture.GestureOverlayView;
-import android.gesture.Prediction;
 import android.gesture.GestureOverlayView.OnGesturePerformedListener;
+import android.gesture.Prediction;
 import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
@@ -43,7 +44,6 @@ public class GesturePractice extends Activity implements OnGesturePerformedListe
 	
 	@Override
 	public void onGesturePerformed(GestureOverlayView overlay, Gesture gesture) {
-		// TODO Auto-generated method stub
 		ArrayList<Prediction> predictions = gestureLib.recognize(gesture);
 		int index = 0;
 		Prediction prediction;
@@ -57,9 +57,7 @@ public class GesturePractice extends Activity implements OnGesturePerformedListe
 		if (index < 4)
 		{
 			// Log.i("customgestures","Stop Timer:"+new Date().toString());
-			//TODO:search
-			Toast.makeText(this, "Successful method " + searchMethod, 
-					Toast.LENGTH_SHORT).show();
+			googleSearch();
 		}
 		else {
 			Toast.makeText(
@@ -79,40 +77,43 @@ public class GesturePractice extends Activity implements OnGesturePerformedListe
 		View inflate = getLayoutInflater().inflate(R.layout.main, null);
 		gestureOverlayView.addView(inflate);
 		gestureOverlayView.setGestureVisible(true);
-		
-
-		if (searchMethod.equalsIgnoreCase(getResources().getString(
-				R.string.question_mark)))
-		{
-			gestureLib = GestureLibraries.fromRawResource(this,
-					R.raw.question_gestures);
-		}
-		if (searchMethod.equalsIgnoreCase(getResources().getString(
-				R.string.swirl_anticlockwise)))
-		{
-			gestureLib = GestureLibraries.fromRawResource(this,
-					R.raw.swirl_gesture_anticlockwise);
-		}
-		if(searchMethod.equalsIgnoreCase(getResources().getString(
-				R.string.swirl_clockwise)))
-		{
-			gestureLib = GestureLibraries.fromRawResource(this,
-					R.raw.swirl_gesture_clockwise);
-		}
-		
 		if(searchMethod.equalsIgnoreCase(getResources().getString(R.string.normal_search))== false)
 		{
 			gestureOverlayView.addOnGesturePerformedListener(this);
+
+			if (searchMethod.equalsIgnoreCase(getResources().getString(
+					R.string.question_mark)))
+			{
+				gestureLib = GestureLibraries.fromRawResource(this,
+						R.raw.question_gestures);
+			} else if (searchMethod.equalsIgnoreCase(getResources().getString(
+					R.string.swirl_anticlockwise)))
+			{
+				gestureLib = GestureLibraries.fromRawResource(this,
+						R.raw.swirl_gesture_anticlockwise);
+			} else if(searchMethod.equalsIgnoreCase(getResources().getString(
+					R.string.swirl_clockwise)))
+			{
+				gestureLib = GestureLibraries.fromRawResource(this,
+						R.raw.swirl_gesture_clockwise);
+			}
 			setContentView(gestureOverlayView);
+			EditText searchBox = (EditText) findViewById(R.id.searchBox);
+			searchBox.setVisibility(View.INVISIBLE);
+			ImageButton button = (ImageButton) findViewById(R.id.search_simulate);
+			button.setVisibility(View.INVISIBLE);
 		}
 		else
 		{
 			setContentView(gestureOverlayView);
-			EditText searchBox=(EditText)findViewById(R.id.searchBox);
+			EditText searchBox = (EditText) findViewById(R.id.searchBox);
+			searchBox.setVisibility(View.VISIBLE);
+			ImageButton button = (ImageButton) findViewById(R.id.search_simulate);
+			button.setVisibility(View.VISIBLE);			
 			searchBox.setFocusableInTouchMode(true);
 			searchBox.requestFocus();
 		}
-
+		
 		if (gestureLib != null && !gestureLib.load())
 		{
 			finish();
@@ -131,7 +132,6 @@ public class GesturePractice extends Activity implements OnGesturePerformedListe
 		textView.setOnTouchListener(new OnTouchListener() {
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
-				// TODO: rename date variable
 //				startTaskTime = new Date();
 				Log.i("customgestures", "Start:" + textView.getSelectionStart()
 						+ " End: " + textView.getSelectionEnd());
@@ -148,9 +148,18 @@ public class GesturePractice extends Activity implements OnGesturePerformedListe
 
 			@Override
 			public void onClick(View v) {
-				//TODO: add search
+				EditText searchTerm =(EditText)findViewById(R.id.searchBox);
+				selectedText=searchTerm.getText().toString();
+				googleSearch();
 			}
 		});
 
+	}
+	void googleSearch()
+	{
+		Intent intent = new Intent(Intent.ACTION_WEB_SEARCH); 
+		String keyword= selectedText;    
+		intent.putExtra(SearchManager.QUERY, keyword);    
+		startActivity(intent);
 	}
 }
