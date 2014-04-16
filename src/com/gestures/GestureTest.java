@@ -207,7 +207,7 @@ public class GestureTest extends Activity implements OnGesturePerformedListener 
 	 *  
 	 *  Samples from path are not time-based. */
 	private void saveGesturePath(Gesture gesture) {
-		final int samples = 16; // Number of samples from path
+		final int samples = 64; // Number of samples from path
 		ArrayList<float[]> points = new ArrayList<float[]>();
 		PathMeasure measure = new PathMeasure(gesture.toPath(),false);
 		float[] coordinateContainer = {0f, 0f};
