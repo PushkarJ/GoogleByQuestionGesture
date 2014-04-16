@@ -8,6 +8,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -68,6 +69,8 @@ public class SelectSearchMethod extends Activity {
 							.show();
 					Intent intent = new Intent(SelectSearchMethod.this, test);
 					intent.putExtra(Constants.SEARCH_METHOD, selectSearchMethodButton.getText());
+					EditText participantIdentifierField = (EditText) findViewById(R.id.participant);
+					intent.putExtra(Constants.PARTICIPANT, participantIdentifierField.getText().toString());
 					startActivity(intent); 
 				}
 			}

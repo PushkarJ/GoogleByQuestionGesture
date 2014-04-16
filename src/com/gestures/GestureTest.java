@@ -54,6 +54,7 @@ public class GestureTest extends Activity implements OnGesturePerformedListener 
 	String selectedText;
 	HashMap<String, Double> results;
 	String searchMethod;
+	String participant;
 	int iteration = 0;
 //	private final int numTests = 2; // For quick testing
 	private final int numTests = 10;
@@ -70,6 +71,7 @@ public class GestureTest extends Activity implements OnGesturePerformedListener 
 		super.onCreate(savedInstanceState);
 		Intent intent = getIntent();
 		searchMethod = intent.getExtras().getString(Constants.SEARCH_METHOD);
+		participant = intent.getExtras().getString(Constants.PARTICIPANT);
 		iteration = intent.getExtras().getInt("iteration");
 		results = intent.getExtras().get(Constants.RESULTS) == null ? new HashMap<String, Double>(
 				11) : (HashMap<String, Double>) intent.getExtras().get(
@@ -195,6 +197,7 @@ public class GestureTest extends Activity implements OnGesturePerformedListener 
 			next = new Intent(GestureTest.this, ShowResults.class);
 		}
 		next.putExtra(Constants.SEARCH_METHOD, searchMethod);
+		next.putExtra(Constants.PARTICIPANT, participant);
 		next.putExtra(Constants.RESULTS, results);
 		next.putExtra(Constants.PATHS, gestureRecord);
 		startActivity(next);

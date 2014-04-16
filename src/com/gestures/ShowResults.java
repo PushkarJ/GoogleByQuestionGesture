@@ -30,12 +30,15 @@ public class ShowResults extends Activity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.show_results);
 		Intent intent = getIntent();
+		String participant = intent.getExtras().getString(
+				Constants.PARTICIPANT);
 		String searchMethod = intent.getExtras().getString(
 				Constants.SEARCH_METHOD);
 		@SuppressWarnings("unchecked")
 		HashMap<String, Double> results =(HashMap<String,Double>) intent.getExtras().get(
 				Constants.RESULTS);
 		StringBuilder resultsCSV = new StringBuilder();
+		resultsCSV.append(Constants.PARTICIPANT).append(",");
 		resultsCSV.append(Constants.SEARCH_METHOD).append(",");
 		if(results!=null)
 		{
@@ -54,6 +57,7 @@ public class ShowResults extends Activity
 		}
 		resultsCSV.append("Total Time");
 		resultsCSV.append(System.getProperty("line.separator"));
+		resultsCSV.append(participant+",");
 		resultsCSV.append(searchMethod+",");
 		Collection<Double> result_values= results.values();
 		double total=0;
@@ -75,8 +79,8 @@ public class ShowResults extends Activity
 		ArrayList<ArrayList<float[]>> paths =(ArrayList<ArrayList<float[]>>) intent.getExtras().get(
 				Constants.PATHS);
 		String polylineElt = "";
-		for (ArrayList<float[]> path:paths) {
-			polylineElt += polylineEltFromPoints(path);
+		for (int i = 0; i < paths.size(); i++) {
+			polylineElt += polylineEltFromPoints(paths.get(i),participant,searchMethod,i+1);
 		}
 		TextView svgText = (TextView) findViewById(R.id.paths);
 		svgText.setText(polylineElt);
@@ -119,13 +123,29 @@ public class ShowResults extends Activity
 		});
 	}
 
-	private String polylineEltFromPoints(ArrayList<float[]> path) {
+	private String polylineEltFromPoints(
+				ArrayList<float[]> path,
+				String participant,
+				String method,
+				int iteration) {
 		String polyline = "<polyline points=\" ";
 		for (float[] pt:path) {
 			polyline += String.format("%.2f,%.2f ", pt[0], pt[1]);
 		}
-		polyline += "\" />";
+		polyline += "\" ";
+		
+		polyline += "class=\"";
+		polyline += "participant-" + tidyString(participant) + " ";
+		polyline += "method-" + tidyString(method) + " ";
+		polyline += "iteration-" + iteration;
+		polyline += "\" ";
+				
+		polyline += "/>";
 		polyline += System.getProperty("line.separator");
 		return polyline;
+	}
+
+	private String tidyString(String participant) {
+		return participant.replaceAll("\\W+", "").toLowerCase();
 	}
 }

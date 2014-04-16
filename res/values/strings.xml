@@ -31,4 +31,5 @@
     <string name="no_paths">No Paths Recorded</string>
     <string name="copycsv">Copy CSV Data</string>
     <string name="copysvg">Copy SVG Data</string>
+    <string name="participant">Participant</string>
 </resources>
