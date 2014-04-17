@@ -58,8 +58,8 @@ public class GestureTest extends Activity implements OnGesturePerformedListener 
 	int iteration = 0;
 //	private final int numTests = 2; // For quick testing
 	private final int numTests = 10;
-	final int[] targetStart = { 146, 560, 613, 90, 604, 542, 217, 359, 236, 195 };
-	final int[] targetEnd = { 149, 568, 619, 97, 610, 544, 222, 368, 241, 204 };
+	final int[] targetStart = { 359, 406, 22, 90, 500, 288, 217, 146, 236, 481 };
+	final int[] targetEnd = { 368, 416, 26, 97, 507, 295, 222, 149, 241, 488 };
 	private Date endTaskTime;
 	private Date startTaskTime;
 	ArrayList<ArrayList<float[]>> gestureRecord;
