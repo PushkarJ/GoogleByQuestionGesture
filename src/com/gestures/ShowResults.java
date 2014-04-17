@@ -51,39 +51,45 @@ public class ShowResults extends Activity
 			        return (i1 < i2 ? -1 : (i1 == i2 ? 0 : 1));
 			    }
 			});
-		for(String rh:result_header_list)
-		{
-			resultsCSV.append(rh).append(",");
+			for(String rh:result_header_list)
+			{
+				resultsCSV.append(rh).append(",");
+			}
+			resultsCSV.append("Total Time");
+			resultsCSV.append(System.getProperty("line.separator"));
+			resultsCSV.append(participant+",");
+			resultsCSV.append(searchMethod+",");
+			Collection<Double> result_values= results.values();
+			double total=0;
+			List<Double> result_values_list = new ArrayList<Double>(result_values);
+			Collections.sort(result_values_list);
+	
+			for(Double rh:result_values_list)
+			{
+				resultsCSV.append(rh).append(",");
+				total+=rh;
+			}
+			resultsCSV.append(total).append(System.getProperty("line.separator"));
+	
+			TextView resultsText = (TextView)findViewById(R.id.results);
+			resultsText.setText(resultsCSV.toString());
+			
+			// Paths SVG
+			ArrayList<ArrayList<float[]>> paths =(ArrayList<ArrayList<float[]>>) intent.getExtras().get(
+					Constants.PATHS);
+			if (paths != null) {
+				String polylineElt = "";
+				for (int i = 0; i < paths.size(); i++) {
+					polylineElt += polylineEltFromPoints(paths.get(i),participant,searchMethod,i+1);
+				}
+				String allResults = "";
+				allResults += resultsText.getText();
+				allResults += System.getProperty("line.separator");
+				allResults += System.getProperty("line.separator");
+				allResults += polylineElt;
+				resultsText.setText(allResults);
+			}
 		}
-		resultsCSV.append("Total Time");
-		resultsCSV.append(System.getProperty("line.separator"));
-		resultsCSV.append(participant+",");
-		resultsCSV.append(searchMethod+",");
-		Collection<Double> result_values= results.values();
-		double total=0;
-		List<Double> result_values_list = new ArrayList<Double>(result_values);
-		Collections.sort(result_values_list);
-
-		for(Double rh:result_values_list)
-		{
-			resultsCSV.append(rh).append(",");
-			total+=rh;
-		}
-		resultsCSV.append(total).append(System.getProperty("line.separator"));
-
-		TextView resultsText = (TextView)findViewById(R.id.results);
-		resultsText.setText(resultsCSV.toString());
-		}
-		
-		// Paths SVG
-		ArrayList<ArrayList<float[]>> paths =(ArrayList<ArrayList<float[]>>) intent.getExtras().get(
-				Constants.PATHS);
-		String polylineElt = "";
-		for (int i = 0; i < paths.size(); i++) {
-			polylineElt += polylineEltFromPoints(paths.get(i),participant,searchMethod,i+1);
-		}
-		TextView svgText = (TextView) findViewById(R.id.paths);
-		svgText.setText(polylineElt);
 		
 		// Yanks the CSV to the clipboard
 		Button copycsv = (Button) findViewById(R.id.copycsv);
@@ -94,19 +100,6 @@ public class ShowResults extends Activity
 				ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
 				TextView resultsText = (TextView)findViewById(R.id.results);
 				ClipData clip = ClipData.newPlainText("CSV Data", resultsText.getText());
-				clipboard.setPrimaryClip(clip);
-			}
-		});
-		
-		// Yanks the SVG to the clipboard
-		Button copysvg = (Button) findViewById(R.id.copysvg);
-		copysvg.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-				TextView svgText = (TextView) findViewById(R.id.paths);
-				ClipData clip = ClipData.newPlainText("CSV Data", svgText.getText());
 				clipboard.setPrimaryClip(clip);
 			}
 		});

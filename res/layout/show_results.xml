@@ -3,46 +3,33 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical" >
+
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical" >
 
-    <TextView android:id="@+id/results"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/no_results"/>
-
     <TextView
-        android:id="@+id/paths"
+        android:id="@+id/results"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/no_paths"
-        android:textSize="9sp"
-        android:layout_below="@id/results" />
+        android:text="@string/no_results"
+        android:textSize="9sp" />
 
-        <Button
-            android:id="@+id/copycsv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/copycsv"
-            android:layout_below="@id/paths" />
+    <Button
+        android:id="@+id/copycsv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/results"
+        android:text="@string/copycsv" />
 
-        <Button
-            android:id="@+id/copysvg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/copysvg" 
-            android:layout_below="@id/paths"
-            android:layout_toRightOf="@id/copycsv"/>
-
-        <Button
-            android:id="@+id/restart"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/restart" 
-            android:layout_below="@id/paths"
-            android:layout_toRightOf="@id/copysvg"/>
-
+    <Button
+        android:id="@+id/restart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/results"
+        android:layout_toRightOf="@id/copycsv"
+        android:text="@string/restart" />
 </RelativeLayout>
+
 </ScrollView>
