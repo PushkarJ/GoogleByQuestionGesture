@@ -1,10 +1,9 @@
 SearchSelectedTextByGesture
 ===========================
 
-Using an intuitive gesture to web search selected text on a mobile device
+Project for 05899: Special Topics in HCI- Interaction Techniques by Brad Myers, Carnegie Mellon University, Spring 14
 
-** Project for 05899: Special Topics in HCI- Interaction Techniques by Brad Myers, Carnegie Mellon University, Spring 14
-
+- Using an intuitive gesture to web search selected text on a mobile device
 
 Project Team: 
 
@@ -18,7 +17,7 @@ Notes:
 
 2. The source code can be directly imported as an eclipse project. 
 
-3. The app tracks the user's gestures using a technique called SVG polyline which traces the points of the gesture performed and helps in recreating those gesturs in a javascript environment.
+3. This app tracks the user's gestures using a technique called SVG poly-line which traces the points of the gesture performed and helps in recreating those gestures in a javascript environment.
 
 
 
